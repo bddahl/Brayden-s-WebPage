@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riddle Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+
+        h1 {
+            color: #2c3e50;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .riddle, .answer {
+            margin: 20px 0;
+        }
+
+        .answer {
+            font-style: italic;
+            color: #8e44ad;
+            display: none;
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Riddle Generator</h1>
+        <p>Click the button to get a random riddle!</p>
+        <div class="riddle" id="riddle"></div>
+        <button id="revealBtn">Reveal Answer</button>
+        <div class="answer" id="answer"></div>
+        <button id="newRiddleBtn">Get New Riddle</button>
+    </div>
+
+    <footer>
+        <p>Made by Brayden | Powered by AI Collaboration</p>
+    </footer>
+
+    <script>
+        // Array of riddles and answers
+        const riddles = [
+            { question: "What has to be broken before you can use it?", answer: "An egg" },
+            { question: "I’m tall when I’m young, and I’m short when I’m old. What am I?", answer: "A candle" },
+            { question: "What month of the year has 28 days?", answer: "All of them" },
+            { question: "What is full of holes but still holds water?", answer: "A sponge" },
+            { question: "What question can you never answer yes to?", answer: "Are you asleep yet?" },
+            { question: "What is always in front of you but can’t be seen?", answer: "The future" },
+        ];
+
+        const riddleElement = document.getElementById("riddle");
+        const answerElement = document.getElementById("answer");
+        const revealBtn = document.getElementById("revealBtn");
+        const newRiddleBtn = document.getElementById("newRiddleBtn");
+
+        // Function to generate a random riddle
+        function generateRiddle() {
+            const randomIndex = Math.floor(Math.random() * riddles.length);
+            const selectedRiddle = riddles[randomIndex];
+            riddleElement.textContent = selectedRiddle.question;
+            answerElement.textContent = selectedRiddle.answer;
+            answerElement.style.display = "none"; // Hide answer initially
+        }
+
+        // Event listeners
+        revealBtn.addEventListener("click", () => {
+            answerElement.style.display = "block";
+        });
+
+        newRiddleBtn.addEventListener("click", generateRiddle);
+
+        // Generate the first riddle on page load
+        generateRiddle();
+    </script>
+</body>
+</html>
